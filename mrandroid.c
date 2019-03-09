@@ -19,8 +19,8 @@ void raw(char *fmt, ...) {
 int main() {
     
     char *nick = "mrandroid";
-    char *channel = "#anx-programming";
-    char *host = "irc.undernet.org";
+    char *channel = "#global-indians";
+    char *host = "irc.dal.net";
     char *port = "6667";
     
     char *user, *command, *where, *message, *sep, *target;

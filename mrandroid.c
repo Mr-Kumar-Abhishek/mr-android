@@ -22,6 +22,8 @@ int main() {
     char *channel = "#botforge";
     char *host = "irc.undernet.org";
     char *port = "6667";
+    char *maker1 = "mr-kumar";
+    char *maker2 = "mrkumar";
     
     char *user, *command, *where, *message, *sep, *target;
     int i, j, l, sl, o = -1, start, wordcount;
@@ -81,10 +83,12 @@ int main() {
                         if ((sep = strchr(user, '!')) != NULL) user[sep - user] = '\0';
                         if (where[0] == '#' || where[0] == '&' || where[0] == '+' || where[0] == '!') target = where; else target = user;
                         printf("[from: %s] [reply-with: %s] [where: %s] [reply-to: %s] %s", user, command, where, target, message);
-                        if (!strncmp(command, "PRIVMSG", 7)){
+						if (!strncmp(command, "PRIVMSG", 7)){
 							raw("%s %s :%s", command, target, message); // throw back messages except notices
 						}
-                    }
+                    }else if(!strncmp(command, "JOIN", 4)){
+							raw("PRIVMSG #botforge :Someone joined the channel I am too dumb to understand who is it at the moment\n");
+					}
                 }
                 
             }

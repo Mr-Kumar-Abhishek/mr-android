@@ -19,8 +19,8 @@ void raw(char *fmt, ...) {
 int main() {
     
     char *nick = "mrandroid";
-    char *channel = "#global-indians";
-    char *host = "irc.dal.net";
+    char *channel = "#botforge";
+    char *host = "irc.undernet.org";
     char *port = "6667";
     
     char *user, *command, *where, *message, *sep, *target;
@@ -81,7 +81,9 @@ int main() {
                         if ((sep = strchr(user, '!')) != NULL) user[sep - user] = '\0';
                         if (where[0] == '#' || where[0] == '&' || where[0] == '+' || where[0] == '!') target = where; else target = user;
                         printf("[from: %s] [reply-with: %s] [where: %s] [reply-to: %s] %s", user, command, where, target, message);
-                        //raw("%s %s :%s", command, target, message); // If you enable this the IRCd will get its "*** Looking up your hostname..." messages thrown back at it but it works...
+                        if (!strncmp(command, "PRIVMSG", 7)){
+							raw("%s %s :%s", command, target, message); // throw back messages except notices
+						}
                     }
                 }
                 
